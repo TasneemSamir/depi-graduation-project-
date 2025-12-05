@@ -6,6 +6,8 @@ from tqdm.auto import tqdm
 from tensorflow.keras.models import load_model
 
 warnings.filterwarnings('ignore')
+
+
 def load_spacy_model(model_name='en_core_web_sm'):
 
     try:
