@@ -6,7 +6,19 @@ from tqdm.auto import tqdm
 from tensorflow.keras.models import load_model
 
 warnings.filterwarnings('ignore')
+def load_spacy_model(model_name='en_core_web_sm'):
 
+    try:
+        nlp = spacy.load(model_name)
+        print(f"spaCy model '{model_name}' loaded successfully")
+        return nlp
+    except OSError:
+        print(f"Downloading spaCy model '{model_name}'...")
+        import os
+        os.system(f"python -m spacy download {model_name}")
+        nlp = spacy.load(model_name)
+        return nlp
+        
 def clean_resume_text(text):
     if not isinstance(text, str):
         return ""
